@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Board = () => {
+const BlueCards = () => {
 
     return (
-        <div className="board">
+        <div>
             <p>
-                .board.
+                Blue Cards
             </p>
         </div>
     )
 }
 
-export default Board;
+export default BlueCards;
