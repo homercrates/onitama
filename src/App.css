@@ -17,4 +17,14 @@
   display: flex;
   flex-direction: row;
   color: black;
+  justify-content: center;
+}
+
+.piece {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 21%;
+  margin: 5px;
+  height: 100px;
+  background-color: grey;   
 }
