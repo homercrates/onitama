@@ -9,12 +9,14 @@ const Board = () => {
     const [row4] = useState([[4,0],[4,1],[4,2],[4,3],[4,4]]);
 
     const [player1Moves] = useState([[1,0],[0,1],[0,-1],[1,-1],[1,1]],[[2,0]]);
+    const [possibleMoves, setPossibleMoves] = useState('hi');
 
     const [currentTile, setCurrentTile] = useState();
 
     function spitBoard(row) {
         const giveCord = (e) => {
             setCurrentTile(e.target.id);
+            adjustPossibleMoves(e.target.id);
         }
         
         return (
@@ -24,6 +26,12 @@ const Board = () => {
                 </div>
             )}</div>
         )
+    }
+
+    const adjustPossibleMoves = (newTile) => {
+        setPossibleMoves('adjustedPossibleMoves to account for: ' + newTile);
+        // now when we set a new possible move target
+        // lets get the possible moves by adusting the math of currentTile and possibleMoves array
     }
 
     return (
@@ -37,6 +45,9 @@ const Board = () => {
         </div>
         <div>
             {currentTile}
+        </div>
+        <div>
+            {possibleMoves}
         </div>
         </div>
     )
