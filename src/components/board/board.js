@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 
-
 const Board = () => {
     const [row0] = useState([[0,0],[0,1],[0,2],[0,3],[0,4]]);
     const [row1] = useState([[1,0],[1,1],[1,2],[1,3],[1,4]]);
@@ -9,30 +8,60 @@ const Board = () => {
     const [row3] = useState([[3,0],[3,1],[3,2],[3,3],[3,4]]);
     const [row4] = useState([[4,0],[4,1],[4,2],[4,3],[4,4]]);
 
-        // not rendering triggering just not render not sure
-    const renderBoard = (whichRow) => {
-        whichRow.map((index) => {
-            console.log('board render triggered');
-            return 'hey'
-            /*
-            return (
-                <div className="piece" >
-                    {index} 
-                    <p>p</p>
+    function spitBoard(row) {
+        const giveCord = () => {
+            console.log('click');
+        }
+        
+        return (
+            <div className="board" id={row}>{row.map((index) =>
+                <div className="piece" id={index} key={index} onClick={giveCord}>
+                    {index}
                 </div>
-            )
-            */
-        });
+            )}</div>
+        )
     }
+
     return (
         <div className="board">
-            <div className="board">{renderBoard(row0)}</div>
-            <div className="board">{row1}</div>
-            <div className="board">{row2}</div>
-            <div className="board">{row3}</div>
-            <div className="board">{row4}</div>
+            {spitBoard(row0)}
+            {spitBoard(row1)}
+            {spitBoard(row2)}
+            {spitBoard(row3)}
+            {spitBoard(row4)}
         </div>
     )
+/*
+    return (
+        <div className="board">
+            <div className="board" id="row0">{row0.map((index) =>
+                <div className="piece">
+                    {index}
+                </div>
+            )}</div>
+            <div className="board" id="row1">{row1.map((index) =>
+                <div className="piece">
+                    {index}
+                </div>
+            )}</div>
+            <div className="board" id="row2">{row2.map((index) =>
+                <div className="piece">
+                    {index}
+                </div>
+            )}</div>
+            <div className="board" id="row3">{row3.map((index) =>
+                <div className="piece">
+                    {index}
+                </div>
+            )}</div>
+            <div className="board" id="row4">{row4.map((index) =>
+                <div className="piece">
+                    {index}
+                </div>
+            )}</div>
+        </div>
+    )
+    */
 }
 
 export default Board;

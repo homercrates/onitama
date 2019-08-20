@@ -17,14 +17,25 @@
   display: flex;
   flex-direction: row;
   color: black;
-  justify-content: center;
+}
+
+.board {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  width: 50vh;
+  background-color: beige;
+ 
+  max-width: 50vh;
 }
 
 .piece {
   display: flex;
-  flex-direction: row;
-  flex: 1 0 21%;
-  margin: 5px;
-  height: 100px;
-  background-color: grey;   
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 9vh;
+  width: 9vh;
+  background-color: grey;
+  border: .1vh solid #444; 
 }
