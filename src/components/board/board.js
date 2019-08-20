@@ -8,9 +8,13 @@ const Board = () => {
     const [row3] = useState([[3,0],[3,1],[3,2],[3,3],[3,4]]);
     const [row4] = useState([[4,0],[4,1],[4,2],[4,3],[4,4]]);
 
+    const [player1Moves] = useState([[1,0],[0,1],[0,-1],[1,-1],[1,1]],[[2,0]]);
+
+    const [currentTile, setCurrentTile] = useState();
+
     function spitBoard(row) {
-        const giveCord = () => {
-            console.log('click');
+        const giveCord = (e) => {
+            setCurrentTile(e.target.id);
         }
         
         return (
@@ -23,12 +27,17 @@ const Board = () => {
     }
 
     return (
+        <div>
         <div className="board">
             {spitBoard(row0)}
             {spitBoard(row1)}
             {spitBoard(row2)}
             {spitBoard(row3)}
             {spitBoard(row4)}
+        </div>
+        <div>
+            {currentTile}
+        </div>
         </div>
     )
 /*
