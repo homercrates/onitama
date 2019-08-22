@@ -51,37 +51,6 @@ const Board = () => {
         </div>
         </div>
     )
-/*
-    return (
-        <div className="board">
-            <div className="board" id="row0">{row0.map((index) =>
-                <div className="piece">
-                    {index}
-                </div>
-            )}</div>
-            <div className="board" id="row1">{row1.map((index) =>
-                <div className="piece">
-                    {index}
-                </div>
-            )}</div>
-            <div className="board" id="row2">{row2.map((index) =>
-                <div className="piece">
-                    {index}
-                </div>
-            )}</div>
-            <div className="board" id="row3">{row3.map((index) =>
-                <div className="piece">
-                    {index}
-                </div>
-            )}</div>
-            <div className="board" id="row4">{row4.map((index) =>
-                <div className="piece">
-                    {index}
-                </div>
-            )}</div>
-        </div>
-    )
-    */
 }
 
 export default Board;
