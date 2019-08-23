@@ -32,12 +32,28 @@ const Board = () => {
         setPossibleMoves('adjustedPossibleMoves to account for: ' + newTile);
         console.log(player1Moves);
         console.log(newTile);
+        const newTileArr = [parseInt(newTile[0]), parseInt(newTile[2])]
+        console.log(newTileArr);
+        // lets turn newTile into a nested array
+        /*
+        const newTileArr = newTile.reduce((rows, key, idx) => {
+            return (idx % 2 === 0 ? rows.push([key]) : rows[rows.length -1].push(key)) && rows;
+        }, []);
+        */
+        
         // now when we set a new possible move target
         // lets get the possible moves by adusting the math of currentTile and possibleMoves array
-        const possibleCurrentArr = player1Moves.map((arr, i) => {
-            return arr + newTile[i];
-        });
-        console.log(possibleCurrentArr);
+        const newPossArr = [];
+        function possibleCurrentArr() {
+            for(let x = 0; x < player1Moves.length; x++) {
+                newPossArr.push([player1Moves[x][0] + newTileArr[0], player1Moves[x][1] + newTileArr[1]])
+                
+                //console.log(player1Moves[x])
+                console.log(newTileArr);
+            }
+        }
+        possibleCurrentArr();
+        console.log(newPossArr)
     }
 
     return (
