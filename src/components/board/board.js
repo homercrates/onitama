@@ -30,15 +30,14 @@ const Board = () => {
 
     const adjustPossibleMoves = (newTile) => {
         setPossibleMoves('adjustedPossibleMoves to account for: ' + newTile);
+        console.log(player1Moves);
+        console.log(newTile);
         // now when we set a new possible move target
         // lets get the possible moves by adusting the math of currentTile and possibleMoves array
-        const posibleCurrentArr = player1Moves.map( cord => {
-            console.log(player1Moves);
-            console.log(cord[0] + ' :cord');
-            console.log(newTile[0] + ' : newTile');
-            return [cord[0] + newTile[0]]
+        const possibleCurrentArr = player1Moves.map((arr, i) => {
+            return arr + newTile[i];
         });
-        console.log("posibleCurrentArr: " + posibleCurrentArr);
+        console.log(possibleCurrentArr);
     }
 
     return (
