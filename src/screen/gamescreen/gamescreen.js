@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Board from '../../components/board/board';
 import RedCards from '../../components/redCards/redCards';
@@ -6,8 +6,7 @@ import LimboCard from '../../components/limboCard/limboCard';
 import BlueCards from '../../components/blueCards/blueCards';
 import Defeated from '../../components/defeated/defeated';
 
-const GameScreen = () => {
-
+const GameScreen = (props) => {
     return (
         <div>
             <div className="redPlayerCards">
@@ -27,7 +26,6 @@ const GameScreen = () => {
             <div className="bluePlayerCards">
                 <BlueCards />
             </div>
-            
         </div>
     )
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
 import GameScreen from './screen/gamescreen/gamescreen';
+//import myStore from './store/store';
 
 function App() {
   return (

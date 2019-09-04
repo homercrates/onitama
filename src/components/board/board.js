@@ -53,7 +53,7 @@ const Board = () => {
             }
         }
         possibleCurrentArr();
-        console.log(newPossArr)
+        console.log(newPossArr);
     }
 
     return (
