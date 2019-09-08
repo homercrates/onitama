@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# added more
+
+.DS_Store
+.cache/
+dist/
+coverage/
+.vscode/
+.env
