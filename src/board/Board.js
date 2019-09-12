@@ -74,6 +74,7 @@ const Board = () => {
                     <div className="hand-red-2" onClick={() => console.log('redHand 1:', redHand[1])}>
                         {redHand[1]}
                     </div>
+
                 </div>
                 <br />
             </div>

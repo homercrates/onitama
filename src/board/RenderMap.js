@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const RenderMap = (props) => {
-    console.log('boards props inside RenderMap', props)
+    const [currentTile, setCurrentTile] = useState([]);
+
+    useEffect(() => {
+        console.log(currentTile)
+    }, [currentTile])
 
     return (
         <div className="boardBorder">
@@ -13,7 +17,9 @@ const RenderMap = (props) => {
                             key={`${i}${index}${ii}`}
                             id={`${index}${ii}`}
                             className="innerPiece"
-                            onClick={() => console.log(`${index}${ii}`)} >
+                            onClick={() => {
+                                setCurrentTile([index, ii])
+                            }} >
                             {i}
                         </div>
                     ))}
