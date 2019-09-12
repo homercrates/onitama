@@ -1,8 +1,7 @@
 import React from 'react';
 
 const RenderMap = (props) => {
-    console.log(props)
-
+    console.log('boards props inside RenderMap', props)
 
     return (
         <div className="boardBorder">
@@ -12,6 +11,7 @@ const RenderMap = (props) => {
 
                         <div
                             key={`${i}${index}${ii}`}
+                            id={`${index}${ii}`}
                             className="innerPiece"
                             onClick={() => console.log(`${index}${ii}`)} >
                             {i}
@@ -21,21 +21,8 @@ const RenderMap = (props) => {
             ))}
         </div>
     )
-    /*    
-            return (
-                <div className="boardBorder">
-                    border
-                    {props.map((key, i) => (
-                        <div className="innerPiece">
-                            {key[i]}
-                        </div>))}
-                </div>
-            );
-      */
 };
 
 export default RenderMap;
 
 
-// trying to map right
-// board[0][0]  board [0][1]

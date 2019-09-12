@@ -13,8 +13,9 @@ const Board = () => {
     ]);
 
     // hand state
-    const [blueHand, setBlueHand] = useState([['hand one'], ['hand two']])
+    const [redHand, setRedHand] = useState([[[0, 1], [1, 0]], [[2, 0], [0, 2]]])
 
+    // example of useEffect everytime the board renders i dont want to log that
     useEffect(() => {
         console.log(board);
     }, [board])
@@ -34,11 +35,12 @@ const Board = () => {
 
         setBoard(hold);
     }
-    // exported MoveHandler();
-    // PROBLEM LEFT OFF HERE
-    // its splcing good just places ["RS"] inside so double array
-    // I just want it to put "RS" not ["RS"]
-    // my guess is something like indexOF valueOf
+    // set fromA fromB by getting value of square. 
+    // that is {key} and {ii} from RenderMap
+    const choseFromSquare = () => {
+        // lets first just get the values logged
+        console.log(RenderMap.key.value);
+    };
 
     // use this but change the name later
     // const buttonTest = () => MoveHandler(testOneMove);
@@ -53,28 +55,29 @@ const Board = () => {
 
     return (
         <div>
-            {board}
-            <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
-            <div>
-                <p>render board</p>
+            <div className="boardContainer">
+                <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
                 <div>
-                    {spillMap}
+                    board renders here:
+                        {spillMap}
                 </div>
+            </div>
+            <div>
                 <div>
                     {board[0][0]}
                 </div>
-                <div className="hand-blue">
-                    Blue Hand:
-                    <div className="hand-blue-1" onClick={() => console.log(blueHand[0])}>
-                        {blueHand[0]}
+                <div className="hand-red">
+                    red Hand:
+                    <div className="hand-red-1" onClick={() => console.log('redHand 0:', redHand[0])}>
+                        {redHand[0]}
                     </div>
-                    <div className="hand-blue-2" onClick={() => console.log(blueHand[1])}>
-                        {blueHand[1]}
+                    <div className="hand-red-2" onClick={() => console.log('redHand 1:', redHand[1])}>
+                        {redHand[1]}
                     </div>
                 </div>
                 <br />
             </div>
-        </div>
+        </div >
     )
 }
 
