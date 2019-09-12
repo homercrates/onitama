@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Board from '../board/Board';
+
 const GameView = () => {
     return (
+
         <div>
             Here in lay the game view.
-            <p>we need to show red 2 cards</p>
+                <p>we need to show red 2 cards</p>
             <p>we need to show blue 2 cards</p>
             <p> we need to show the middle flating card</p>
             <hr />
@@ -24,6 +26,7 @@ const GameView = () => {
             <p>have the board state hold all the states</p>
             <Board />
         </div>
+
     )
 }
 

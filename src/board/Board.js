@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import RenderMap from './RenderMap';
 
 const Board = () => {
     const [board, setBoard] = useState([
@@ -8,52 +10,59 @@ const Board = () => {
         ['empty', 'empty', 'empty', 'empty', 'empty'],
         ['BS', 'BS', 'BM', 'BS', 'BS']
     ]);
-    console.log(board);
+    useEffect(() => {
+        console.log(board);
+    }, [board])
+
     const testOneMove = (fromA, fromB, toA, toB) => {
         let hold = [...board];
-        console.log('hold: ' + hold);
-        let extractedPiece = hold[fromA].splice(fromB, 1, "empty");
-        console.log(extractedPiece)
-        let placePiece = hold[toA].splice(toB, 1, extractedPiece);
-        console.log(placePiece)
-        setBoard(hold);
-        console.log("hold done: " + hold)
-    }
+        let extractedPiece = hold[fromA][fromB]
+        let placePiece = hold[toA][toB]
 
+        if (extractedPiece === 'empty') throw new Error('no piece to move')
+
+        hold[fromA][fromB] = "empty"
+        hold[toA][toB] = extractedPiece
+
+        if (placePiece !== 'empty') console.log(`${extractedPiece} killed ${placePiece}`)
+        console.log(`${extractedPiece} moves from [${fromA}][${fromB}] to [${toA}][${toB}]`)
+
+        setBoard(hold);
+    }
+    // exported MoveHandler();
     // PROBLEM LEFT OFF HERE
     // its splcing good just places ["RS"] inside so double array
     // I just want it to put "RS" not ["RS"]
     // my guess is something like indexOF valueOf
 
+    // use this but change the name later
+    // const buttonTest = () => MoveHandler(testOneMove);
     const buttonTest = () => {
-        console.log('click');
-        // get fromA fromB by clicking on piece
-        // highlight possible moves
-        //get toA toB by clicking on place
-
-        // pass the fromA fromB toA toB values here and do move
-        testOneMove(0, 0, 1, 0);
+        console.log('click')
+        testOneMove(0, 0, 1, 0)
     }
+
+    const spillMap = RenderMap(board)
+
+    // render the board indiv <div>s  can control style here
 
     return (
         <div>
             {board}
-            <button onClick={buttonTest} >testMove</button>
-            {board}
+            <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
+            <div>
+                <p>render board</p>
+                <div>
+                    {spillMap}
+                </div>
+                <div>
+                    {board[0][0]}
+                </div>
+            </div>
         </div>
     )
 }
 
 export default Board;
 
-/*
-[
-    [['RS'],['RS'],['RM',"throne"],['RS'],['RS']],
-    [[],[],[],[],[]],
-    [[],[],[],[],[]],
-    [[],[],[],[],[]],
-    [['BS'],['BS'],['BM',"throne"],['BS'],['BS']]
-]
-*/
-// board[0][0]  has 'RS'
-// board[1][0] is one sqaure up
+
