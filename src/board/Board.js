@@ -15,6 +15,9 @@ const Board = () => {
     // hand state
     const [redHand, setRedHand] = useState([[[0, 1], [1, 0]], [[2, 0], [0, 2]]])
 
+    // set current tile
+    const [currentTile, setCurrentTile] = useState([]);
+
     // example of useEffect everytime the board renders i dont want to log that
     useEffect(() => {
         console.log(board);
@@ -49,8 +52,6 @@ const Board = () => {
         testOneMove(0, 0, 1, 0)
     }
 
-    const spillMap = RenderMap(board)
-
     // render the board indiv <div>s  can control style here
 
     return (
@@ -59,7 +60,24 @@ const Board = () => {
                 <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
                 <div>
                     board renders here:
-                        {spillMap}
+                    <div className="boardBorder">
+                        {board.map((key, index) => (
+                            <React.Fragment key={index}>
+                                {key.map((i, ii) => (
+
+                                    <div
+                                        key={`${i}${index}${ii}`}
+                                        id={`${index}${ii}`}
+                                        className="innerPiece"
+                                        onClick={() => {
+                                            setCurrentTile([index, ii])
+                                        }} >
+                                        {i}
+                                    </div>
+                                ))}
+                            </React.Fragment>
+                        ))}
+                    </div>
                 </div>
             </div>
             <div>
@@ -76,6 +94,8 @@ const Board = () => {
                     </div>
 
                 </div>
+                current tile:
+                {currentTile}
                 <br />
             </div>
         </div >
