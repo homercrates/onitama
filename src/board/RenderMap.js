@@ -10,7 +10,10 @@ const RenderMap = (props) => {
                 <React.Fragment key={index}>
                     {key.map((i, ii) => (
 
-                        <div key={`${i}${index}${ii}`} className="innerPiece">
+                        <div
+                            key={`${i}${index}${ii}`}
+                            className="innerPiece"
+                            onClick={() => console.log(`${index}${ii}`)} >
                             {i}
                         </div>
                     ))}
