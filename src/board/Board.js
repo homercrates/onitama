@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import RenderMap from './RenderMap';
-import Hand from '../hand/Hand';
 
 const Board = () => {
+    // board state
     const [board, setBoard] = useState([
         ['RS', 'RS', 'RM', 'RS', 'RS'],
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -11,7 +11,9 @@ const Board = () => {
         ['empty', 'empty', 'empty', 'empty', 'empty'],
         ['BS', 'BS', 'BM', 'BS', 'BS']
     ]);
-    const [blueHand, setBlueHand] = useState(['player blue hand 1', ['player blue hand 2']])
+
+    // hand state
+    const [blueHand, setBlueHand] = useState([['hand one'], ['hand two']])
 
     useEffect(() => {
         console.log(board);
@@ -61,10 +63,16 @@ const Board = () => {
                 <div>
                     {board[0][0]}
                 </div>
-                <Hand />
-                blueHand from board: {blueHand}
+                <div className="hand-blue">
+                    Blue Hand:
+                    <div className="hand-blue-1" onClick={() => console.log(blueHand[0])}>
+                        {blueHand[0]}
+                    </div>
+                    <div className="hand-blue-2" onClick={() => console.log(blueHand[1])}>
+                        {blueHand[1]}
+                    </div>
+                </div>
                 <br />
-                blueHand from Hand: {Hand.blueHand}
             </div>
         </div>
     )
