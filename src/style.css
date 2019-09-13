@@ -19,3 +19,7 @@
     background-color: grey;
     border: 0.1vh solid #444;
 }
+
+.boardContainer {
+    display: flex;
+}

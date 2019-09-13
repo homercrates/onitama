@@ -20,7 +20,6 @@ const GameView = () => {
             <hr />
             <p>i think i may need the Context on this level and render everything from Here
                 Keep it all simple here leave a Context wrapper here above all the components comming in.
-
             </p>
             <hr />
             <p>have the board state hold all the states</p>

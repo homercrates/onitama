@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import RenderMap from './RenderMap';
 
 const Board = () => {
     // board state
@@ -13,10 +12,17 @@ const Board = () => {
     ]);
 
     // hand state
-    const [redHand, setRedHand] = useState([[[0, 1], [1, 0]], [[2, 0], [0, 2]]])
+    const [redHand, setRedHand] = useState([
+        [[1, 0], [1, 0]],
+        [[2, 0], [0, 2]]
+    ])
 
-    // set current tile
+    // set current tile state
     const [currentTile, setCurrentTile] = useState([]);
+    // set the movingTo state
+    const [destination, setDestination] = useState([]);
+    // set active card
+    const [activeCard, setActiveCard] = useState([]);
 
     // example of useEffect everytime the board renders i dont want to log that
     useEffect(() => {
@@ -38,33 +44,36 @@ const Board = () => {
 
         setBoard(hold);
     }
-    // set fromA fromB by getting value of square. 
-    // that is {key} and {ii} from RenderMap
-    const choseFromSquare = () => {
-        // lets first just get the values logged
-        console.log(RenderMap.key.value);
-    };
+    const movingTo = () => {
+        // obviouslt dont log this return or set
+        // set value to a state of movingTo  so we can add movingTo with currentTile
+        setDestination([(currentTile[0] + redHand[0][0][0]), (currentTile[1] + redHand[0][0][1])])
+        console.log('destination: ', destination);
+        // when i setDestination with the log result i get a blank result
+        // or an error... need to figure out whats going on with this.
+    }
 
     // use this but change the name later
     // const buttonTest = () => MoveHandler(testOneMove);
     const buttonTest = () => {
         console.log('click')
-        testOneMove(0, 0, 1, 0)
+        testOneMove(currentTile[0], currentTile[1], destination[0], destination[1])
     }
 
     // render the board indiv <div>s  can control style here
 
+    // if activeCard ===    key  flag possible 
+    // i need to render  the background if true
     return (
         <div>
             <div className="boardContainer">
                 <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
-                <div>
+                <div className="boardContainer">
                     board renders here:
                     <div className="boardBorder">
                         {board.map((key, index) => (
                             <React.Fragment key={index}>
                                 {key.map((i, ii) => (
-
                                     <div
                                         key={`${i}${index}${ii}`}
                                         id={`${index}${ii}`}
@@ -78,7 +87,25 @@ const Board = () => {
                             </React.Fragment>
                         ))}
                     </div>
+                    <div>
+                        lets put redHand here
+                        <br />
+                        <div onClick={() => setActiveCard(redHand[0])}>
+                            {redHand[0]}
+                        </div>
+                        <br />
+                        <div onClick={() => setActiveCard(redHand[1])}>
+                            {redHand[1]}
+                        </div>
+                        <div>
+                            Display active card
+                            <br />
+                            {activeCard}
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
             <div>
                 <div>
@@ -97,6 +124,12 @@ const Board = () => {
                 current tile:
                 {currentTile}
                 <br />
+                {destination} destination
+                <br />
+                {destination[0]} destination-0
+                <br />
+                {destination[1]} destination-1
+                <button onClick={movingTo}>movingTO test</button>
             </div>
         </div >
     )
