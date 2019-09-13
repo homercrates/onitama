@@ -47,10 +47,13 @@ const Board = () => {
     const movingTo = () => {
         // obviouslt dont log this return or set
         // set value to a state of movingTo  so we can add movingTo with currentTile
-        setDestination([(currentTile[0] + redHand[0][0][0]), (currentTile[1] + redHand[0][0][1])])
+        setDestination([(currentTile[0] + activeCard[0][0]), (currentTile[1] + activeCard[0][1])])
+        console.log('activeCard: ', activeCard);
+        console.log('active card 0', activeCard[0][0]);
+        console.log('active card 1', activeCard[0][1]);
         console.log('destination: ', destination);
-        // when i setDestination with the log result i get a blank result
-        // or an error... need to figure out whats going on with this.
+        // click lets put a hand here to setActiiveCard then that will calc in movingTo give us destination
+        // right now we are only auto chosing the first option in the activeCard 
     }
 
     // use this but change the name later
@@ -60,6 +63,17 @@ const Board = () => {
         testOneMove(currentTile[0], currentTile[1], destination[0], destination[1])
     }
 
+    // if destination is the calc being sent toA toB
+    // need to make a sim functon displaying all possible moves
+
+    // hand needs activeHand passed
+    function calcPossibleMoves(hand) {
+        hand.map(move => {
+            console.log(move[0] + currentTile[0])
+            console.log(move[1] + currentTile[1])
+        })
+        console.log('possible moves: ')
+    }
     // render the board indiv <div>s  can control style here
 
     // if activeCard ===    key  flag possible 
@@ -69,7 +83,7 @@ const Board = () => {
             <div className="boardContainer">
                 <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
                 <div className="boardContainer">
-                    board renders here:
+                    {/* board renders here */}
                     <div className="boardBorder">
                         {board.map((key, index) => (
                             <React.Fragment key={index}>
@@ -130,6 +144,9 @@ const Board = () => {
                 <br />
                 {destination[1]} destination-1
                 <button onClick={movingTo}>movingTO test</button>
+                <button onClick={() => calcPossibleMoves(activeCard)}>calc moves</button>
+                {redHand[0]}
+                {activeCard}
             </div>
         </div >
     )
