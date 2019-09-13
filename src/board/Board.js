@@ -23,6 +23,8 @@ const Board = () => {
     const [destination, setDestination] = useState([]);
     // set active card
     const [activeCard, setActiveCard] = useState([]);
+    // set possible moves
+    const [possibleMoves, setPossibleMoves] = useState([]);
 
     // example of useEffect everytime the board renders i dont want to log that
     useEffect(() => {
@@ -68,12 +70,28 @@ const Board = () => {
 
     // hand needs activeHand passed
     function calcPossibleMoves(hand) {
+        let tempHold = [];
         hand.map(move => {
-            console.log(move[0] + currentTile[0])
-            console.log(move[1] + currentTile[1])
+            //let addMove = [...possibleMoves, [(move[0] + currentTile[0]), (move[1] + currentTile[1])]];
+            //let addMove = [...possibleMoves]
+            //addMove.push([(move[0] + currentTile[0]), (move[1] + currentTile[1])])
+
+            //let copy = [[...possibleMoves], [(move[0] + currentTile[0]), (move[1] + currentTile[1])]]
+            //setPossibleMoves(copy)
+            console.log('first: ', [(move[0] + currentTile[0]), (move[1] + currentTile[1])])
+            console.log('addMove: ', " move-", move);
+
+            let add = [(move[0] + currentTile[0]), (move[1] + currentTile[1])];
+            tempHold.push(add);
         })
-        console.log('possible moves: ')
+        setPossibleMoves(tempHold);
+        console.log(tempHold, ' : tempHold')
+        console.log(" possmove: ", possibleMoves);
     }
+    useEffect(() => {
+        console.log('current possible moves: ', possibleMoves);
+    }, [possibleMoves])
+
     // render the board indiv <div>s  can control style here
 
     // if activeCard ===    key  flag possible 
@@ -147,6 +165,8 @@ const Board = () => {
                 <button onClick={() => calcPossibleMoves(activeCard)}>calc moves</button>
                 {redHand[0]}
                 {activeCard}
+                <br />
+                {possibleMoves} :possible moves
             </div>
         </div >
     )
