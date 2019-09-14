@@ -1,4 +1,13 @@
 
+.redHandContainer {
+    display: flex;
+    margin: 1vh;
+}
+.redHandCard {
+    margin: .5vh;
+    border: 0.2vh solid #444;
+}
+
 .boardBorder {
     display: flex;
     flex-direction: row;

@@ -13,7 +13,7 @@ const Board = () => {
 
     // hand state
     const [redHand, setRedHand] = useState([
-        [[1, 0], [1, 0]],
+        [[1, 0], [0, 1], [1, 1]],
         [[2, 0], [0, 2]]
     ])
 
@@ -69,35 +69,45 @@ const Board = () => {
     // need to make a sim functon displaying all possible moves
 
     // hand needs activeHand passed
-    function calcPossibleMoves(hand) {
+    const calcPossibleMoves = (hand) => {
         let tempHold = [];
-        hand.map(move => {
-            //let addMove = [...possibleMoves, [(move[0] + currentTile[0]), (move[1] + currentTile[1])]];
-            //let addMove = [...possibleMoves]
-            //addMove.push([(move[0] + currentTile[0]), (move[1] + currentTile[1])])
-
-            //let copy = [[...possibleMoves], [(move[0] + currentTile[0]), (move[1] + currentTile[1])]]
-            //setPossibleMoves(copy)
-            console.log('first: ', [(move[0] + currentTile[0]), (move[1] + currentTile[1])])
-            console.log('addMove: ', " move-", move);
-
-            let add = [(move[0] + currentTile[0]), (move[1] + currentTile[1])];
+        hand.map(card => {
+            let add = [(card[0] + currentTile[0]), (card[1] + currentTile[1])];
             tempHold.push(add);
         })
         setPossibleMoves(tempHold);
         console.log(tempHold, ' : tempHold')
-        console.log(" possmove: ", possibleMoves);
+        console.log("possmove: ", possibleMoves);
+        console.log("cuurent Tile: ", currentTile);
+        console.log(activeCard, "active")
     }
     useEffect(() => {
         console.log('current possible moves: ', possibleMoves);
     }, [possibleMoves])
 
+    // make a function to return true or not is this a possiblemove
+    const checkForPos = (arr, val) => {
+        return arr.some(arrVal => arr === arrVal)
+    }
     // render the board indiv <div>s  can control style here
 
     // if activeCard ===    key  flag possible 
     // i need to render  the background if true
     return (
         <div>
+            {/* RedHand */}
+            <div className="redHandContainer">
+                <div className="redHandCard"
+                    onClick={() => setActiveCard(redHand[0])}
+                >
+                    {redHand[0]}
+                </div>
+                <div className="redHandCard"
+                    onClick={() => setActiveCard(redHand[1])}
+                >
+                    {redHand[1]}
+                </div>
+            </div>
             <div className="boardContainer">
                 <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
                 <div className="boardContainer">
@@ -106,29 +116,24 @@ const Board = () => {
                         {board.map((key, index) => (
                             <React.Fragment key={index}>
                                 {key.map((i, ii) => (
-                                    <div
+                                    < div
                                         key={`${i}${index}${ii}`}
                                         id={`${index}${ii}`}
                                         className="innerPiece"
                                         onClick={() => {
                                             setCurrentTile([index, ii])
-                                        }} >
+                                        }}
+                                    >
                                         {i}
+                                        {/* was trying to get the bakcground change when compared but its not working */}
+                                        {/* style={{ backgroundColor: checkForPos(activeCard, [index, ii]) ? 'white' : 'grey' }} */}
+
                                     </div>
                                 ))}
                             </React.Fragment>
                         ))}
                     </div>
                     <div>
-                        lets put redHand here
-                        <br />
-                        <div onClick={() => setActiveCard(redHand[0])}>
-                            {redHand[0]}
-                        </div>
-                        <br />
-                        <div onClick={() => setActiveCard(redHand[1])}>
-                            {redHand[1]}
-                        </div>
                         <div>
                             Display active card
                             <br />
@@ -140,19 +145,6 @@ const Board = () => {
 
             </div>
             <div>
-                <div>
-                    {board[0][0]}
-                </div>
-                <div className="hand-red">
-                    red Hand:
-                    <div className="hand-red-1" onClick={() => console.log('redHand 0:', redHand[0])}>
-                        {redHand[0]}
-                    </div>
-                    <div className="hand-red-2" onClick={() => console.log('redHand 1:', redHand[1])}>
-                        {redHand[1]}
-                    </div>
-
-                </div>
                 current tile:
                 {currentTile}
                 <br />
@@ -167,6 +159,8 @@ const Board = () => {
                 {activeCard}
                 <br />
                 {possibleMoves} :possible moves
+                <br />
+                {activeCard[1]}
             </div>
         </div >
     )
