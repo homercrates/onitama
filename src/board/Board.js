@@ -69,6 +69,7 @@ const Board = () => {
     const buttonTest = () => {
         console.log('click')
         testOneMove(currentTile[0], currentTile[1], destination[0], destination[1])
+        setRedsTurn(!redsTurn);
     }
 
     // if destination is the calc being sent toA toB
