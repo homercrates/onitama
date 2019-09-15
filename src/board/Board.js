@@ -11,11 +11,17 @@ const Board = () => {
         ['BS', 'BS', 'BM', 'BS', 'BS']
     ]);
 
+    // game phase state
+    const [phase, setPhase] = useState('Click Start');
+    //whos turn
+    const [redsTurn, setRedsTurn] = useState(true);
+
     // hand state
     const [redHand, setRedHand] = useState([
         [[1, 0], [0, 1], [1, 1]],
         [[2, 0], [0, 2]]
-    ])
+    ]);
+    const [blueHand, setBlueHand] = useState([]);
 
     // set current tile state
     const [currentTile, setCurrentTile] = useState([]);
@@ -138,6 +144,14 @@ const Board = () => {
                             Display active card
                             <br />
                             {activeCard}
+                        </div>
+                        <div className="directions">
+                            <div className="whosturn">
+                                <h3>{redsTurn ? "Red's Turn" : "Blue's Turn"}</h3>
+                            </div>
+                            <div className="phase">
+                                <p>{phase}</p>
+                            </div>
                         </div>
 
                     </div>
