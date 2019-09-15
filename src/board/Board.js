@@ -66,7 +66,7 @@ const Board = () => {
 
     // use this but change the name later
     // const buttonTest = () => MoveHandler(testOneMove);
-    const buttonTest = () => {
+    const submitTurn = () => {
         console.log('click')
         testOneMove(currentTile[0], currentTile[1], destination[0], destination[1])
         setRedsTurn(!redsTurn);
@@ -116,7 +116,7 @@ const Board = () => {
                 </div>
             </div>
             <div className="boardContainer">
-                <button style={{ backgroundColor: 'lightgrey' }} onClick={buttonTest} >testMove</button>
+                <button style={{ backgroundColor: 'lightgrey' }} onClick={submitTurn} >testMove</button>
                 <div className="boardContainer">
                     {/* board renders here */}
                     <div className="boardBorder">
