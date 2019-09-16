@@ -36,3 +36,8 @@
 .directions {
     border: 0.1vh solid #444;   
 }
+
+.orderButtonsContainer{
+    display: flex;
+    flex-direction: column;
+}

@@ -116,7 +116,10 @@ const Board = () => {
                 </div>
             </div>
             <div className="boardContainer">
-                <button style={{ backgroundColor: 'lightgrey' }} onClick={submitTurn} >testMove</button>
+                <div className="orderButtonsContainer">
+                    <button style={{ backgroundColor: 'lightgrey' }} onClick={submitTurn} >Submit Turn</button>
+                    <button onClick={movingTo}>Chose Where</button>
+                </div>
                 <div className="boardContainer">
                     {/* board renders here */}
                     <div className="boardBorder">
@@ -168,7 +171,6 @@ const Board = () => {
                 {destination[0]} destination-0
                 <br />
                 {destination[1]} destination-1
-                <button onClick={movingTo}>movingTO test</button>
                 <button onClick={() => calcPossibleMoves(activeCard)}>calc moves</button>
                 {redHand[0]}
                 {activeCard}
