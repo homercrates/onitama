@@ -21,7 +21,10 @@ const Board = () => {
         [[1, 0], [0, 1], [1, 1]],
         [[2, 0], [0, 2]]
     ]);
-    const [blueHand, setBlueHand] = useState([]);
+    const [blueHand, setBlueHand] = useState([
+        [[1, 0], [0, 1], [1, 1]],
+        [[2, 0], [0, 2]]
+    ]);
 
     // set current tile state
     const [currentTile, setCurrentTile] = useState([]);
@@ -90,10 +93,13 @@ const Board = () => {
     }
     useEffect(() => {
         console.log('current possible moves: ', possibleMoves);
+        board;
+        console.log('rerenderBoard');
     }, [possibleMoves])
 
     // make a function to return true or not is this a possiblemove
     const checkForPos = (arr, val) => {
+        console.log(arr.some(arrVal => arr === arrVal));
         return arr.some(arrVal => arr === arrVal)
     }
     // render the board indiv <div>s  can control style here
@@ -118,11 +124,12 @@ const Board = () => {
             <div className="boardContainer">
                 <div className="orderButtonsContainer">
                     <button style={{ backgroundColor: 'lightgrey' }} onClick={submitTurn} >Submit Turn</button>
-                    <button onClick={movingTo}>Chose Where</button>
+                    <button onClick={movingTo}>Lock Choice</button>
                 </div>
                 <div className="boardContainer">
                     {/* board renders here */}
                     <div className="boardBorder">
+
                         {board.map((key, index) => (
                             <React.Fragment key={index}>
                                 {key.map((i, ii) => (
@@ -142,6 +149,7 @@ const Board = () => {
                                 ))}
                             </React.Fragment>
                         ))}
+
                     </div>
                     <div>
                         <div>
@@ -162,6 +170,19 @@ const Board = () => {
                 </div>
 
             </div>
+            {/* Blue Hand */}
+            <div className="blueHandContainer">
+                <div className="blueHandCard"
+                    onClick={() => setActiveCard(blueHand[0])}
+                >
+                    {blueHand[0]}
+                </div>
+                <div className="blueHandCard"
+                    onClick={() => setActiveCard(blueHand, 1)}
+                >
+                    {blueHand[1]}
+                </div>
+            </div>
             <div>
                 current tile:
                 {currentTile}
@@ -172,12 +193,10 @@ const Board = () => {
                 <br />
                 {destination[1]} destination-1
                 <button onClick={() => calcPossibleMoves(activeCard)}>calc moves</button>
-                {redHand[0]}
                 {activeCard}
                 <br />
                 {possibleMoves} :possible moves
-                <br />
-                {activeCard[1]}
+
             </div>
         </div >
     )
