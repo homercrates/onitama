@@ -91,6 +91,14 @@ const Board = () => {
         console.log("cuurent Tile: ", currentTile);
         console.log(activeCard, "active")
     }
+
+    const canmoveto = (index, ii) => {
+        let found = false
+        possibleMoves.forEach(i => {
+            if (i[0] === index && i[1] === ii) found = true
+        })
+        return found
+    }
     useEffect(() => {
         console.log('current possible moves: ', possibleMoves);
         board;
@@ -140,11 +148,11 @@ const Board = () => {
                                         onClick={() => {
                                             setCurrentTile([index, ii])
                                         }}
+                                        style={{
+                                            backgroundColor: canmoveto(index, ii) ? 'white' : 'grey'
+                                        }}
                                     >
                                         {i}
-                                        {/* was trying to get the bakcground change when compared but its not working */}
-                                        {/* style={{ backgroundColor: checkForPos(activeCard, [index, ii]) ? 'white' : 'grey' }} */}
-
                                     </div>
                                 ))}
                             </React.Fragment>
@@ -178,7 +186,7 @@ const Board = () => {
                     {blueHand[0]}
                 </div>
                 <div className="blueHandCard"
-                    onClick={() => setActiveCard(blueHand, 1)}
+                    onClick={() => setActiveCard(blueHand[1])}
                 >
                     {blueHand[1]}
                 </div>
