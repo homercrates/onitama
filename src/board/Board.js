@@ -99,6 +99,7 @@ const Board = () => {
         })
         return found
     }
+
     useEffect(() => {
         console.log('current possible moves: ', possibleMoves);
         board;
