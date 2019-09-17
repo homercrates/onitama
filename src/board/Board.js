@@ -92,7 +92,7 @@ const Board = () => {
         console.log(activeCard, "active")
     }
 
-    const canmoveto = (index, ii) => {
+    const canMoveTo = (index, ii) => {
         let found = false
         possibleMoves.forEach(i => {
             if (i[0] === index && i[1] === ii) found = true
@@ -104,13 +104,6 @@ const Board = () => {
         board;
         console.log('rerenderBoard');
     }, [possibleMoves])
-
-    // make a function to return true or not is this a possiblemove
-    const checkForPos = (arr, val) => {
-        console.log(arr.some(arrVal => arr === arrVal));
-        return arr.some(arrVal => arr === arrVal)
-    }
-    // render the board indiv <div>s  can control style here
 
     // if activeCard ===    key  flag possible 
     // i need to render  the background if true
@@ -132,7 +125,7 @@ const Board = () => {
             <div className="boardContainer">
                 <div className="orderButtonsContainer">
                     <button style={{ backgroundColor: 'lightgrey' }} onClick={submitTurn} >Submit Turn</button>
-                    <button onClick={movingTo}>Lock Choice</button>
+                    <button onClick={() => calcPossibleMoves(activeCard)}>Lock Choice</button>
                 </div>
                 <div className="boardContainer">
                     {/* board renders here */}
@@ -149,7 +142,7 @@ const Board = () => {
                                             setCurrentTile([index, ii])
                                         }}
                                         style={{
-                                            backgroundColor: canmoveto(index, ii) ? 'white' : 'grey'
+                                            backgroundColor: canMoveTo(index, ii) ? 'white' : 'grey'
                                         }}
                                     >
                                         {i}
@@ -200,7 +193,7 @@ const Board = () => {
                 {destination[0]} destination-0
                 <br />
                 {destination[1]} destination-1
-                <button onClick={() => calcPossibleMoves(activeCard)}>calc moves</button>
+                <button onClick={movingTo}>calc moves</button>
                 {activeCard}
                 <br />
                 {possibleMoves} :possible moves
