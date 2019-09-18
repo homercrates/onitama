@@ -34,6 +34,9 @@ const Board = () => {
     const [activeCard, setActiveCard] = useState([]);
     // set possible moves
     const [possibleMoves, setPossibleMoves] = useState([]);
+    // set move button visable
+    const [moveButtonVisable, setMoveButtonVisable] = useState(false);
+
 
     // example of useEffect everytime the board renders i dont want to log that
     useEffect(() => {
@@ -55,6 +58,7 @@ const Board = () => {
 
         setBoard(hold);
     }
+
     const movingTo = () => {
         // obviouslt dont log this return or set
         // set value to a state of movingTo  so we can add movingTo with currentTile
@@ -73,6 +77,9 @@ const Board = () => {
         console.log('click')
         testOneMove(currentTile[0], currentTile[1], destination[0], destination[1])
         setRedsTurn(!redsTurn);
+        setDestination([]);
+        setPossibleMoves([]);
+        setCurrentTile([]);
     }
 
     // if destination is the calc being sent toA toB
@@ -86,6 +93,7 @@ const Board = () => {
             tempHold.push(add);
         })
         setPossibleMoves(tempHold);
+        setMoveButtonVisable(true);
         console.log(tempHold, ' : tempHold')
         console.log("possmove: ", possibleMoves);
         console.log("cuurent Tile: ", currentTile);
@@ -100,11 +108,17 @@ const Board = () => {
         return found
     }
 
+    const choseMove = () => {
+        setMoveButtonVisable(false);
+        setDestination([])
+        setPossibleMoves([])
+    }
+
     useEffect(() => {
         console.log('current possible moves: ', possibleMoves);
         board;
         console.log('rerenderBoard');
-    }, [possibleMoves])
+    }, [possibleMoves, moveButtonVisable])
 
     // if activeCard ===    key  flag possible 
     // i need to render  the background if true
@@ -127,6 +141,7 @@ const Board = () => {
                 <div className="orderButtonsContainer">
                     <button style={{ backgroundColor: 'lightgrey' }} onClick={submitTurn} >Submit Turn</button>
                     <button onClick={() => calcPossibleMoves(activeCard)}>Lock Choice</button>
+                    {moveButtonVisable ? (<button onClick={choseMove}>Choose Move</button>) : null}
                 </div>
                 <div className="boardContainer">
                     {/* board renders here */}
@@ -140,7 +155,11 @@ const Board = () => {
                                         id={`${index}${ii}`}
                                         className="innerPiece"
                                         onClick={() => {
-                                            setCurrentTile([index, ii])
+                                            if (moveButtonVisable) {
+                                                setDestination([index, ii])
+                                            } else {
+                                                setCurrentTile([index, ii])
+                                            }
                                         }}
                                         style={{
                                             backgroundColor: canMoveTo(index, ii) ? 'white' : 'grey'
