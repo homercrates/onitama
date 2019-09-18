@@ -12,7 +12,7 @@ const Board = () => {
     ]);
 
     // game phase state
-    const [phase, setPhase] = useState('Click Start');
+    const [message, setMessage] = useState('Click Start');
     //whos turn
     const [redsTurn, setRedsTurn] = useState(true);
 
@@ -80,6 +80,8 @@ const Board = () => {
         setDestination([]);
         setPossibleMoves([]);
         setCurrentTile([]);
+        setMoveButtonVisable(false);
+        setMessage("click tile to move from");
     }
 
     // if destination is the calc being sent toA toB
@@ -94,6 +96,7 @@ const Board = () => {
         })
         setPossibleMoves(tempHold);
         setMoveButtonVisable(true);
+        setMessage("click tile to move too");
         console.log(tempHold, ' : tempHold')
         console.log("possmove: ", possibleMoves);
         console.log("cuurent Tile: ", currentTile);
@@ -112,6 +115,7 @@ const Board = () => {
         setMoveButtonVisable(false);
         setDestination([])
         setPossibleMoves([])
+        setMessage('Chose Tile to move from, click lock choice');
     }
 
     useEffect(() => {
@@ -141,7 +145,7 @@ const Board = () => {
                 <div className="orderButtonsContainer">
                     <button style={{ backgroundColor: 'lightgrey' }} onClick={submitTurn} >Submit Turn</button>
                     <button onClick={() => calcPossibleMoves(activeCard)}>Lock Choice</button>
-                    {moveButtonVisable ? (<button onClick={choseMove}>Choose Move</button>) : null}
+                    {moveButtonVisable ? (<button onClick={choseMove}>Undo</button>) : null}
                 </div>
                 <div className="boardContainer">
                     {/* board renders here */}
@@ -156,7 +160,7 @@ const Board = () => {
                                         className="innerPiece"
                                         onClick={() => {
                                             if (moveButtonVisable) {
-                                                setDestination([index, ii])
+                                                setDestination([index, ii]);
                                             } else {
                                                 setCurrentTile([index, ii])
                                             }
@@ -183,7 +187,7 @@ const Board = () => {
                                 <h3>{redsTurn ? "Red's Turn" : "Blue's Turn"}</h3>
                             </div>
                             <div className="phase">
-                                <p>{phase}</p>
+                                <p>{message}</p>
                             </div>
                         </div>
 
