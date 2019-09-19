@@ -11,7 +11,7 @@ const Board = () => {
         ['BS', 'BS', 'BM', 'BS', 'BS']
     ]);
 
-    // game phase state
+    // game message state
     const [message, setMessage] = useState('Click Start');
     //whos turn
     const [redsTurn, setRedsTurn] = useState(true);
@@ -25,6 +25,7 @@ const Board = () => {
         [[1, 0], [0, 1], [1, 1]],
         [[2, 0], [0, 2]]
     ]);
+    const [middleHand, setMiddleHand] = useState([[1, 3], [0, 2]])
 
     // set current tile state
     const [currentTile, setCurrentTile] = useState([]);
@@ -76,6 +77,7 @@ const Board = () => {
     const submitTurn = () => {
         console.log('click')
         testOneMove(currentTile[0], currentTile[1], destination[0], destination[1])
+        console.log('index of: ', redHand.indexOf(activeCard));
         setRedsTurn(!redsTurn);
         setDestination([]);
         setPossibleMoves([]);
@@ -188,6 +190,11 @@ const Board = () => {
                             </div>
                             <div className="phase">
                                 <p>{message}</p>
+                            </div>
+                        </div>
+                        <div className="middleHandContainer">
+                            <div className="middleHandCard">
+                                {middleHand[0]}
                             </div>
                         </div>
 
