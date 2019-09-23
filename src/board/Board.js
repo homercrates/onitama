@@ -54,8 +54,15 @@ const Board = () => {
 
         if (extractedPiece === 'empty') throw new Error('no piece to move')
 
-        hold[fromA][fromB] = "empty"
-        hold[toA][toB] = extractedPiece
+        // check first if piece is R or B if its same piece as destnation it can not move
+        // if its not same team or empty square then... do legal move.
+        if (extractedPiece[0] !== placePiece[0]) {
+            hold[fromA][fromB] = "empty"
+            hold[toA][toB] = extractedPiece
+            console.log('testing first digits', extractedPiece[0])
+        } else {
+            throw new Error('Illegal Move Tile Occupied by You')
+        }
 
         if (placePiece !== 'empty') console.log(`${extractedPiece} killed ${placePiece}`)
         console.log(`${extractedPiece} moves from [${fromA}][${fromB}] to [${toA}][${toB}]`)
@@ -86,7 +93,6 @@ const Board = () => {
         setPossibleMoves([]);
         setCurrentTile([]);
         setMoveButtonVisable(false);
-        toggleHandDisable();
         setMessage("click tile to move from");
     }
 
@@ -110,9 +116,11 @@ const Board = () => {
     }
 
     const canMoveTo = (index, ii) => {
+        let hold = [...board];
         let found = false
         possibleMoves.forEach(i => {
-            if (i[0] === index && i[1] === ii) found = true
+            if (i[0] === index && i[1] === ii) { found = true }
+            //if (redsTurn && (hold[index][i] === "RS" || "RM")) { found = false }
         })
         return found
     }
@@ -136,6 +144,12 @@ const Board = () => {
             :
             setHandShow({ red: "disabledButton", blue: "blueHandCard" });
     }, [redsTurn])
+    /*
+            (redsTurn && (i == 'RS' || 'RM')) ? "innerPiece" : "disabledInnerPiece"
+        const checkSquareClickable = (i) => {
+            redsTurn && (i === 'RS' || 'RM') ? 
+        }
+        */
     // if activeCard ===    key  flag possible 
     // i need to render  the background if true
     return (
