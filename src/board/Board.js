@@ -38,6 +38,9 @@ const Board = () => {
     // set move button visable
     const [moveButtonVisable, setMoveButtonVisable] = useState(false);
 
+    // red and blue disable state
+    const [handShow, setHandShow] = useState({ red: "redHandCard", blue: "disabledButton" });
+
 
     // example of useEffect everytime the board renders i dont want to log that
     useEffect(() => {
@@ -83,6 +86,7 @@ const Board = () => {
         setPossibleMoves([]);
         setCurrentTile([]);
         setMoveButtonVisable(false);
+        toggleHandDisable();
         setMessage("click tile to move from");
     }
 
@@ -126,18 +130,24 @@ const Board = () => {
         console.log('rerenderBoard');
     }, [possibleMoves, moveButtonVisable])
 
+    useEffect(() => {
+        redsTurn ?
+            setHandShow({ red: "redHandCard", blue: "disabledButton" })
+            :
+            setHandShow({ red: "disabledButton", blue: "blueHandCard" });
+    }, [redsTurn])
     // if activeCard ===    key  flag possible 
     // i need to render  the background if true
     return (
         <div>
             {/* RedHand */}
             <div className="redHandContainer" >
-                <div className="redHandCard"
+                <div className={handShow.red}
                     onClick={() => setActiveCard(redHand[0])}
                 >
                     {redHand[0]}
                 </div>
-                <div className="redHandCard"
+                <div className={handShow.red}
                     onClick={() => setActiveCard(redHand[1])}
                 >
                     {redHand[1]}
@@ -204,12 +214,12 @@ const Board = () => {
             </div>
             {/* Blue Hand */}
             <div className="blueHandContainer">
-                <div className="blueHandCard"
+                <div className={handShow.blue}
                     onClick={() => setActiveCard(blueHand[0])}
                 >
                     {blueHand[0]}
                 </div>
-                <div className="blueHandCard"
+                <div className={handShow.blue}
                     onClick={() => setActiveCard(blueHand[1])}
                 >
                     {blueHand[1]}
