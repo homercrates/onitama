@@ -131,7 +131,7 @@ const Board = () => {
     return (
         <div>
             {/* RedHand */}
-            <div className="redHandContainer">
+            <div className="redHandContainer" >
                 <div className="redHandCard"
                     onClick={() => setActiveCard(redHand[0])}
                 >

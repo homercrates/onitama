@@ -56,3 +56,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.disabledButton {
+    pointer-events: none;
+    opacity: 0.8;
+}
