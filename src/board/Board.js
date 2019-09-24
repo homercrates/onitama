@@ -44,17 +44,35 @@ const Board = () => {
     // one time lets reverse blueHand
     useEffect(() => {
         let tempHold = [...blueHand]
+        let reversed;
+        let holdReversed = [];
         console.log(tempHold, '--tempHold');
-        let convertedHand = tempHold.map((index, i) => {
-            let tempVal = index[i]
-            index[i] = -tempVal
-            console.log(index, '--index')
-            console.log(i, '--i')
-            console.log(index[i], '--index[i]');
+        let convertedHand = tempHold.map((index) => {
+            console.log('indjex: ', index)
+            index.map((i) => {
+                index[i]
+                console.log(i, '=value of i')
+                i.map((j) => {
+                    console.log(j);
+                    j === 0 ? holdReversed.push(j) : holdReversed.push(-j)
+                    // reversed = -j
+                    //console.log(reversed, '=negativeJ')
+                    // holdReversed.push(reversed)
+                })
+            })
+            //console.log(i[index], '.. index[i]');
+            console.log(holdReversed, '=is what we hand to blue')
+            //setBlueHand(holdReversed);
+
+        })
+
+        /* let convertedHand = tempHold.map((index, i) => {
+            console.log('as neg', -Math.abs(index[i]))
             // its broke in here
             //fix i get NaN
-        });
-        setBlueHand(convertedHand);
+        }); */
+        //setBlueHand(convertedHand);
+        convertedHand
     }, [])
 
     // example of useEffect everytime the board renders i dont want to log that
