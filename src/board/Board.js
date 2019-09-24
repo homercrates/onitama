@@ -41,6 +41,21 @@ const Board = () => {
     // red and blue disable state
     const [handShow, setHandShow] = useState({ red: "redHandCard", blue: "disabledButton" });
 
+    // one time lets reverse blueHand
+    useEffect(() => {
+        let tempHold = [...blueHand]
+        console.log(tempHold, '--tempHold');
+        let convertedHand = tempHold.map((index, i) => {
+            let tempVal = index[i]
+            index[i] = -tempVal
+            console.log(index, '--index')
+            console.log(i, '--i')
+            console.log(index[i], '--index[i]');
+            // its broke in here
+            //fix i get NaN
+        });
+        setBlueHand(convertedHand);
+    }, [])
 
     // example of useEffect everytime the board renders i dont want to log that
     useEffect(() => {
@@ -95,6 +110,7 @@ const Board = () => {
         setCurrentTile([]);
         setMoveButtonVisable(false);
         setMessage("click tile to move from");
+        reverseValue(activeCard)
         cardSwap();
     }
 
@@ -111,7 +127,6 @@ const Board = () => {
         console.log(activeCard, '--activeCard');
         setRedHand(newRedHand);
         setMiddleHand(activeCard);
-
         //  breaking here     remember  siwthc the card m[put middle in here
 
     }
@@ -140,6 +155,14 @@ const Board = () => {
             //if (redsTurn && (hold[index][i] === "RS" || "RM")) { found = false }
         })
         return found
+    }
+
+    const reverseValue = (thingToReverse) => {
+        thingToReverse.forEach((index, i) => {
+            index[i] = -index[i];
+            console.log('reverseded', index[i])
+            // may be a break here i am getting NaN on some results
+        })
     }
 
     const choseMove = () => {
