@@ -52,14 +52,15 @@ const Board = () => {
         let extractedPiece = hold[fromA][fromB]
         let placePiece = hold[toA][toB]
 
-        if (extractedPiece === 'empty') throw new Error('no piece to move')
+        if (extractedPiece === 'empty') throw new Error('no piece to move');
 
+        if (redsTurn && extractedPiece[0] === 'B') throw new Error('Can Only Move Your Piece');
+        if (!redsTurn && extractedPiece[0] === 'R') throw new Error('Can Only Move Your Piece');
         // check first if piece is R or B if its same piece as destnation it can not move
         // if its not same team or empty square then... do legal move.
         if (extractedPiece[0] !== placePiece[0]) {
             hold[fromA][fromB] = "empty"
             hold[toA][toB] = extractedPiece
-            console.log('testing first digits', extractedPiece[0])
         } else {
             throw new Error('Illegal Move Tile Occupied by You')
         }
@@ -94,10 +95,26 @@ const Board = () => {
         setCurrentTile([]);
         setMoveButtonVisable(false);
         setMessage("click tile to move from");
+        cardSwap();
     }
 
-    // if destination is the calc being sent toA toB
-    // need to make a sim functon displaying all possible moves
+    // lets take card used. put it to middle, send middle card to empty hand
+    const cardSwap = () => {
+        //let tempMidHold = activeCard;
+        //let tempOtherHand = 
+        console.log(activeCard, "---activecard")
+        console.log(redHand.indexOf(activeCard), '--index/of')
+        let switchingCard = redHand.indexOf(activeCard);
+        let newRedHand = [...redHand]
+        newRedHand[switchingCard] = middleHand;
+        console.log('ReformedRedHand', newRedHand);
+        console.log(activeCard, '--activeCard');
+        setRedHand(newRedHand);
+        setMiddleHand(activeCard);
+
+        //  breaking here     remember  siwthc the card m[put middle in here
+
+    }
 
     // hand needs activeHand passed
     const calcPossibleMoves = (hand) => {
@@ -143,7 +160,7 @@ const Board = () => {
             setHandShow({ red: "redHandCard", blue: "disabledButton" })
             :
             setHandShow({ red: "disabledButton", blue: "blueHandCard" });
-    }, [redsTurn])
+    }, [redsTurn, redHand, blueHand, middleHand])
     /*
             (redsTurn && (i == 'RS' || 'RM')) ? "innerPiece" : "disabledInnerPiece"
         const checkSquareClickable = (i) => {
@@ -218,7 +235,7 @@ const Board = () => {
                         </div>
                         <div className="middleHandContainer">
                             <div className="middleHandCard">
-                                {middleHand[0]}
+                                {middleHand}
                             </div>
                         </div>
 
