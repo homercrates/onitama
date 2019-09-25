@@ -118,21 +118,21 @@ const Board = () => {
         setMoveButtonVisable(false);
         setMessage("click tile to move from");
         reverseValue(activeCard)
-        cardSwap();
+        redsTurn ? cardSwap(redHand) : cardSwap(blueHand);
     }
 
     // lets take card used. put it to middle, send middle card to empty hand
-    const cardSwap = () => {
+    const cardSwap = (whichHand) => {
         //let tempMidHold = activeCard;
         //let tempOtherHand = 
         console.log(activeCard, "---activecard")
         console.log(redHand.indexOf(activeCard), '--index/of')
-        let switchingCard = redHand.indexOf(activeCard);
-        let newRedHand = [...redHand]
-        newRedHand[switchingCard] = middleHand;
-        console.log('ReformedRedHand', newRedHand);
+        let switchingCard = whichHand.indexOf(activeCard);
+        let newHand = [...whichHand]
+        newHand[switchingCard] = middleHand;
+        console.log('ReformedRedHand', newHand);
         console.log(activeCard, '--activeCard');
-        setRedHand(newRedHand);
+        redsTurn ? setRedHand(newHand) : setBlueHand(newHand);
         setMiddleHand(activeCard);
         //  breaking here     remember  siwthc the card m[put middle in here
 
