@@ -41,38 +41,27 @@ const Board = () => {
     // red and blue disable state
     const [handShow, setHandShow] = useState({ red: "redHandCard", blue: "disabledButton" });
 
-    // one time lets reverse blueHand
+    // one time lets reverse blueHand this happens once 
+    //to convert blueHand to negative beofre game starts.
     useEffect(() => {
         let tempHold = [...blueHand]
-        let reversed;
-        let holdReversed = [];
-        console.log(tempHold, '--tempHold');
+
         let convertedHand = tempHold.map((index) => {
             console.log('indjex: ', index)
-            index.map((i) => {
-                index[i]
-                console.log(i, '=value of i')
-                i.map((j) => {
-                    console.log(j);
-                    j === 0 ? holdReversed.push(j) : holdReversed.push(-j)
-                    // reversed = -j
-                    //console.log(reversed, '=negativeJ')
-                    // holdReversed.push(reversed)
-                })
-            })
-            //console.log(i[index], '.. index[i]');
-            console.log(holdReversed, '=is what we hand to blue')
-            //setBlueHand(holdReversed);
+            let firstLayer =
+                index.map((i) => {
 
+                    let secondArr =
+                        i.map((j) => {
+                            return j = -j
+                        })
+                    return secondArr;
+                })
+
+            return firstLayer;
         })
 
-        /* let convertedHand = tempHold.map((index, i) => {
-            console.log('as neg', -Math.abs(index[i]))
-            // its broke in here
-            //fix i get NaN
-        }); */
-        //setBlueHand(convertedHand);
-        convertedHand
+        setBlueHand(convertedHand)
     }, [])
 
     // example of useEffect everytime the board renders i dont want to log that
@@ -176,9 +165,15 @@ const Board = () => {
     }
 
     const reverseValue = (thingToReverse) => {
-        thingToReverse.forEach((index, i) => {
-            index[i] = -index[i];
-            console.log('reverseded', index[i])
+        thingToReverse.forEach((index) => {
+            index.map((i) => {
+                console.log(i, '=i(insidereverseValindex.map)')
+                console.log(index, '=index(insidereverseValindex.map)')
+                index[i] = -index[i]
+                console.log(index[i], 'reversedup');
+            })
+            //index[i] = -index[i];
+
             // may be a break here i am getting NaN on some results
         })
     }
