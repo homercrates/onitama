@@ -47,7 +47,6 @@ const Board = () => {
         let tempHold = [...blueHand]
 
         let convertedHand = tempHold.map((index) => {
-            console.log('indjex: ', index)
             let firstLayer =
                 index.map((i) => {
 
@@ -63,11 +62,6 @@ const Board = () => {
 
         setBlueHand(convertedHand)
     }, [])
-
-    // example of useEffect everytime the board renders i dont want to log that
-    useEffect(() => {
-        console.log(board);
-    }, [board])
 
     const testOneMove = (fromA, fromB, toA, toB) => {
         let hold = [...board];
@@ -148,10 +142,6 @@ const Board = () => {
         setPossibleMoves(tempHold);
         setMoveButtonVisable(true);
         setMessage("click tile to move too");
-        console.log(tempHold, ' : tempHold')
-        console.log("possmove: ", possibleMoves);
-        console.log("cuurent Tile: ", currentTile);
-        console.log(activeCard, "active")
     }
 
     const canMoveTo = (index, ii) => {
