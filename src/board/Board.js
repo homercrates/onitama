@@ -33,6 +33,8 @@ const Board = () => {
     const [destination, setDestination] = useState([]);
     // set active card
     const [activeCard, setActiveCard] = useState([]);
+    // set a reversed value of active card
+    const [flippedActiveValue, setFlippedActiveValue] = useState([]);
     // set possible moves
     const [possibleMoves, setPossibleMoves] = useState([]);
     // set move button visable
@@ -91,10 +93,6 @@ const Board = () => {
         // obviouslt dont log this return or set
         // set value to a state of movingTo  so we can add movingTo with currentTile
         setDestination([(currentTile[0] + activeCard[0][0]), (currentTile[1] + activeCard[0][1])])
-        console.log('activeCard: ', activeCard);
-        console.log('active card 0', activeCard[0][0]);
-        console.log('active card 1', activeCard[0][1]);
-        console.log('destination: ', destination);
         // click lets put a hand here to setActiiveCard then that will calc in movingTo give us destination
         // right now we are only auto chosing the first option in the activeCard 
     }
@@ -102,32 +100,41 @@ const Board = () => {
     // use this but change the name later
     // const buttonTest = () => MoveHandler(testOneMove);
     const submitTurn = () => {
-        console.log('click')
+
         testOneMove(currentTile[0], currentTile[1], destination[0], destination[1])
-        console.log('index of: ', redHand.indexOf(activeCard));
+
         setRedsTurn(!redsTurn);
         setDestination([]);
         setPossibleMoves([]);
         setCurrentTile([]);
         setMoveButtonVisable(false);
         setMessage("click tile to move from");
-        reverseValue(activeCard)
+
+        reverseValue(activeCard);
+
+        //let reversedSwapCard = reverseValue(activeCard);
+        //setFlippedActiveValue(reversedSwapCard);
+        //console.log(flippedActiveValue, "this shoudl conatinREVERS");
+        //console.log(reversedSwapCard, "REVSERED NOW PUT BACK TO MIDDLE HAND");
         redsTurn ? cardSwap(redHand) : cardSwap(blueHand);
+        console.log(flippedActiveValue, "HERE IS POST SWAPCARD WE SHOULD HAVE FLIPPED VALUE HERE")
     }
 
     // lets take card used. put it to middle, send middle card to empty hand
     const cardSwap = (whichHand) => {
         //let tempMidHold = activeCard;
         //let tempOtherHand = 
-        console.log(activeCard, "---activecard")
-        console.log(redHand.indexOf(activeCard), '--index/of')
+        console.log(middleHand, '=middleHand starting before carSwap moves"')
         let switchingCard = whichHand.indexOf(activeCard);
         let newHand = [...whichHand]
         newHand[switchingCard] = middleHand;
-        console.log('ReformedRedHand', newHand);
-        console.log(activeCard, '--activeCard');
+
         redsTurn ? setRedHand(newHand) : setBlueHand(newHand);
-        setMiddleHand(activeCard);
+        //setMiddleHand(flippedActiveValue);
+        setMiddleHand(flippedActiveValue);
+        console.log(flippedActiveValue, "FLIPPED ACTIVE VALUE")
+        console.timeLog('activeCard now in middleHand=', activeCard);
+        console.log(middleHand, "=after starting cardSwap moves")
         //  breaking here     remember  siwthc the card m[put middle in here
 
     }
@@ -155,17 +162,20 @@ const Board = () => {
     }
 
     const reverseValue = (thingToReverse) => {
-        thingToReverse.forEach((index) => {
-            index.map((i) => {
-                console.log(i, '=i(insidereverseValindex.map)')
-                console.log(index, '=index(insidereverseValindex.map)')
-                index[i] = -index[i]
-                console.log(index[i], 'reversedup');
+        let convert = [...thingToReverse];
+        let reversed = convert.map((index) => {
+            let firstLevel = index.map((i) => {
+                return i = -i;
             })
-            //index[i] = -index[i];
-
-            // may be a break here i am getting NaN on some results
-        })
+            return firstLevel;
+        });
+        console.log(reversed, "REVERSED REVERSED");
+        setFlippedActiveValue(reversed);
+        //return reversed;
+        console.log(flippedActiveValue, "FLIPPPPPPED ACTIVE CALLLLUUUUUE");
+        // problem is here?
+        // we setFlipped  but its delayed the card converts 
+        // but doesnt show up in middleHand til a turn later
     }
 
     const choseMove = () => {
@@ -176,7 +186,6 @@ const Board = () => {
     }
 
     useEffect(() => {
-        console.log('current possible moves: ', possibleMoves);
         board;
         console.log('rerenderBoard');
     }, [possibleMoves, moveButtonVisable])
