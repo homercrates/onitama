@@ -7,8 +7,11 @@ const GameView = () => {
 
         <div>
             <hr />
-            <p>we need to show possible moves</p>
-            <p> then we need to render the moves</p>
+            <p>NEW BUG I am actually reversing the cards right its just not posting to
+                state when i need it.  its suppsed to tave reverse and setFlippedValue
+                but that is delayed about a turn later it shows up
+
+            </p>
             <hr />
             <p>switchCard is hard coded to red. we need to make it dynamicaly poerate on redHand or blueHand depending on turn</p>
             <p> reverse values into blues hand upside down.</p>
