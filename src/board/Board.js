@@ -89,6 +89,12 @@ const Board = () => {
         setBoard(hold);
     }
 
+
+    useEffect(() => {
+        console.log('FLIPPEDACTIVE CHANGED IN USEEFFECT')
+        console.log(flippedActiveValue, "flipped")
+    }, [flippedActiveValue])
+
     const movingTo = () => {
         // obviouslt dont log this return or set
         // set value to a state of movingTo  so we can add movingTo with currentTile
@@ -119,7 +125,6 @@ const Board = () => {
         redsTurn ? cardSwap(redHand) : cardSwap(blueHand);
         console.log(flippedActiveValue, "HERE IS POST SWAPCARD WE SHOULD HAVE FLIPPED VALUE HERE")
     }
-
     // lets take card used. put it to middle, send middle card to empty hand
     const cardSwap = (whichHand) => {
         //let tempMidHold = activeCard;
@@ -132,6 +137,7 @@ const Board = () => {
         redsTurn ? setRedHand(newHand) : setBlueHand(newHand);
         //setMiddleHand(flippedActiveValue);
         setMiddleHand(flippedActiveValue);
+
         console.log(flippedActiveValue, "FLIPPED ACTIVE VALUE")
         console.timeLog('activeCard now in middleHand=', activeCard);
         console.log(middleHand, "=after starting cardSwap moves")
@@ -160,6 +166,7 @@ const Board = () => {
         })
         return found
     }
+
 
     const reverseValue = (thingToReverse) => {
         let convert = [...thingToReverse];
