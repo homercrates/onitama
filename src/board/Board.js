@@ -43,6 +43,16 @@ const Board = () => {
     // red and blue disable state
     const [handShow, setHandShow] = useState({ red: "redHandCard", blue: "disabledButton" });
 
+    // change later starting hand 
+    // deal hands
+    const dealStartingHand = () => {
+        const possibleHand = [[[1, 3], [0, 2]]]
+        //setRedHand(possibleHand[0],possibleHand[1]);
+        //setBlueHand(possibleHand[2],possibleHand[3]);
+        setMiddleHand(possibleHand[0]);
+    }
+
+
     // one time lets reverse blueHand this happens once 
     //to convert blueHand to negative beofre game starts.
     useEffect(() => {
@@ -93,6 +103,8 @@ const Board = () => {
     useEffect(() => {
         console.log('FLIPPEDACTIVE CHANGED IN USEEFFECT')
         console.log(flippedActiveValue, "flipped")
+        //setMiddleHand(flippedActiveValue);
+        setMiddleHand(flippedActiveValue);
     }, [flippedActiveValue])
 
     const movingTo = () => {
@@ -191,6 +203,10 @@ const Board = () => {
         setPossibleMoves([])
         setMessage('Chose Tile to move from, click lock choice');
     }
+
+    // one time load to set middleHand
+    // should expand dealtStartingHand to deal red and blue too
+    useEffect(() => { dealStartingHand(); }, [])
 
     useEffect(() => {
         board;
