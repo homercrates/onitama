@@ -29,7 +29,7 @@
     flex-flow: wrap;
     width: 50vh;
     background-color: beige;
-  
+    border: 0.2vh solid #444;
     max-width: 50vh;   
 }
 
@@ -40,8 +40,8 @@
     align-items: flex-start;
     height: 9vh;
     width: 9vh;
-    background-color: grey;
     border: 0.1vh solid #444;
+    color: #222;
 }
 
 .boardContainer {
