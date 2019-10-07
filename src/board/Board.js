@@ -270,7 +270,7 @@ const Board = () => {
                                             backgroundColor: canMoveTo(index, ii) ? 'white' : 'grey'
                                         }}
                                     >
-                                        {i}
+                                        {i === 'empty' ? '' : i}
                                     </div>
                                 ))}
                             </React.Fragment>
