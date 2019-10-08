@@ -8,8 +8,12 @@ const Board = () => {
         ['empty', 'empty', 'empty', 'empty', 'empty'],
         ['empty', 'empty', 'empty', 'empty', 'empty'],
         ['empty', 'empty', 'empty', 'empty', 'empty'],
+        ['empty', 'empty', 'empty', 'empty', 'empty'],
         ['BS', 'BS', 'BM', 'BS', 'BS']
     ]);
+    // define thrones lets use div id to define
+    // red throne id=02  blue throne id=52
+
 
     // game message state
     const [message, setMessage] = useState('Click Start');
@@ -267,7 +271,12 @@ const Board = () => {
                                             }
                                         }}
                                         style={{
-                                            backgroundColor: canMoveTo(index, ii) ? 'white' : 'grey'
+                                            backgroundColor: canMoveTo(index, ii) ? 'white'
+                                                : (index === 0 && ii === 2)
+                                                    ? 'red'
+                                                    : (index === 5 && ii === 2)
+                                                        ? 'blue'
+                                                        : 'grey'
                                         }}
                                     >
                                         {i === 'empty' ? '' : i}
