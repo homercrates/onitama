@@ -13,6 +13,9 @@ const Board = () => {
     ]);
     // define thrones lets use div id to define
     // red throne id=02  blue throne id=52
+    // set win state
+    const [redWins, setRedWins] = useState(false);
+    const [blueWins, setBlueWins] = useState(false);
 
 
     // game message state
@@ -98,6 +101,8 @@ const Board = () => {
         }
 
         if (placePiece !== 'empty') console.log(`${extractedPiece} killed ${placePiece}`)
+        if (placePiece === 'RM') setBlueWins(true);
+        if (placePiece === 'BM') setRedWins(true);
         console.log(`${extractedPiece} moves from [${fromA}][${fromB}] to [${toA}][${toB}]`)
 
         setBoard(hold);
@@ -140,6 +145,7 @@ const Board = () => {
         //console.log(reversedSwapCard, "REVSERED NOW PUT BACK TO MIDDLE HAND");
         redsTurn ? cardSwap(redHand) : cardSwap(blueHand);
         console.log(flippedActiveValue, "HERE IS POST SWAPCARD WE SHOULD HAVE FLIPPED VALUE HERE")
+
     }
     // lets take card used. put it to middle, send middle card to empty hand
     const cardSwap = (whichHand) => {
@@ -208,6 +214,19 @@ const Board = () => {
         setMessage('Chose Tile to move from, click lock choice');
     }
 
+    const winConCheck = () => {
+        const checkRedThrone = document.getElementById('02')
+        if (checkRedThrone.innerHTML === 'BM') {
+            alert('Blue WIN, Way of Water');
+        }
+        const checkBlueThrone = document.getElementById('52')
+        if (checkBlueThrone.innerHTML === 'RM') {
+            alert('Red WINs, Way of Water');
+        }
+        if (blueWins) alert("BLUE WINS, Way of Stone");
+        if (redWins) alert("RED WINS, Way of Stone");
+    }
+
     // one time load to set middleHand
     // should expand dealtStartingHand to deal red and blue too
     useEffect(() => { dealStartingHand(); }, [])
@@ -215,6 +234,7 @@ const Board = () => {
     useEffect(() => {
         board;
         console.log('rerenderBoard');
+        winConCheck();
     }, [possibleMoves, moveButtonVisable])
 
     useEffect(() => {
