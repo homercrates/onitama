@@ -33,19 +33,6 @@
     max-width: 50vh;   
 }
 
-.innerPiece {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 9vh;
-    width: 9vh;
-    border: 0.1vh solid #444;
-    color: #222;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 7vh;
-}
-
 .boardContainer {
     display: flex;
 }
@@ -74,4 +61,60 @@
     width: 9vh;
     background-color: grey;
     border: 0.1vh solid #444;
+}
+
+.innerPiece {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 9vh;
+    width: 9vh;
+    border: 0.1vh solid #444;
+    color: #222;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 7vh;
+
+    background-color: rgba(157, 160, 168, 0.705)
+}
+.innerPiece-possible {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 9vh;
+    width: 9vh;
+    border: 0.1vh solid #444;
+    color: #222;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 7vh;
+    background-color: rgba(255, 255, 255, 0.322);
+}
+.innerPiece-redThrone {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 9vh;
+    width: 9vh;
+    border: 0.1vh solid #444;
+    color: #222;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 7vh;
+
+    background-color: rgba(255, 0, 0, 0.301)
+}
+.innerPiece-blueThrone {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 9vh;
+    width: 9vh;
+    border: 0.1vh solid #444;
+    color: #222;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 7vh;
+
+    background-color: rgba(0, 68, 255, 0.308)
 }

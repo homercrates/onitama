@@ -282,7 +282,14 @@ const Board = () => {
                                     < div
                                         key={`${i}${index}${ii}`}
                                         id={`${index}${ii}`}
-                                        className="innerPiece"
+                                        className={`innerPiece${
+                                            canMoveTo(index, ii) ? '-possible'
+                                                : (index === 0 && ii === 2)
+                                                    ? '-redThrone'
+                                                    : (index === 5 && ii === 2)
+                                                        ? '-blueThrone'
+                                                        : ''
+                                            }`}
                                         onClick={() => {
                                             if (moveButtonVisable) {
                                                 setDestination([index, ii]);
@@ -290,14 +297,17 @@ const Board = () => {
                                                 setCurrentTile([index, ii])
                                             }
                                         }}
-                                        style={{
-                                            backgroundColor: canMoveTo(index, ii) ? 'white'
-                                                : (index === 0 && ii === 2)
-                                                    ? 'red'
-                                                    : (index === 5 && ii === 2)
-                                                        ? 'blue'
-                                                        : 'grey'
-                                        }}
+                                    /*
+                                    style={{
+                                        backgroundColor: canMoveTo(index, ii) ? 'white'
+                                            : (index === 0 && ii === 2)
+                                                ? 'red'
+                                                : (index === 5 && ii === 2)
+                                                    ? 'blue'
+                                                    : 'grey'
+                                    }}
+                                    */
+
                                     >
                                         {i === 'empty' ? '' : i}
                                     </div>
