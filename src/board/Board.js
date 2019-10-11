@@ -88,11 +88,17 @@ const Board = () => {
         let placePiece = hold[toA][toB]
 
         // make sure any move is illegal throw err
-        if (!canMoveTo(destination[0], destination[1])) throw new Error('Illegal move');
+        if (!canMoveTo(destination[0], destination[1])) {
+            setMessage('Must choose a white square');
+            throw new Error('Illegal move');
+        }
 
         //if (placePiece !== possibleMoves) throw new Error('Not a possible Move');
         // if piece you are moving doesn't exist error.
-        if (extractedPiece === 'empty') throw new Error('no piece to move');
+        if (extractedPiece === 'empty') {
+            setMessage("Square is empty, choose your piece");
+            throw new Error('no piece to move')
+        };
 
         if (redsTurn && extractedPiece[0] === 'B') throw new Error('Can Only Move Your Piece');
         if (!redsTurn && extractedPiece[0] === 'R') throw new Error('Can Only Move Your Piece');
@@ -102,6 +108,7 @@ const Board = () => {
             hold[fromA][fromB] = "empty"
             hold[toA][toB] = extractedPiece
         } else {
+            setMessage("Tile occupied by you already, can not move there");
             throw new Error('Illegal Move Tile Occupied by You')
         }
 
