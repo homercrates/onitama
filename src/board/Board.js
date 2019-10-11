@@ -87,6 +87,12 @@ const Board = () => {
         let extractedPiece = hold[fromA][fromB]
         let placePiece = hold[toA][toB]
 
+        // make sure any move is illegal throw err
+        // no good canMoveTo ? console.log('yes... can move to') : console.log('no cant move to')
+        console.log(destination, '... destination set  is it valid?')
+
+        //if (placePiece !== possibleMoves) throw new Error('Not a possible Move');
+        // if piece you are moving doesn't exist error.
         if (extractedPiece === 'empty') throw new Error('no piece to move');
 
         if (redsTurn && extractedPiece[0] === 'B') throw new Error('Can Only Move Your Piece');
@@ -121,7 +127,8 @@ const Board = () => {
         // set value to a state of movingTo  so we can add movingTo with currentTile
         setDestination([(currentTile[0] + activeCard[0][0]), (currentTile[1] + activeCard[0][1])])
         // click lets put a hand here to setActiiveCard then that will calc in movingTo give us destination
-        // right now we are only auto chosing the first option in the activeCard 
+        // right now we are only auto chosing the first option in the activeCard
+        console.log(destination, "..destination, check against >> possible...", possibleMoves);
     }
 
     // use this but change the name later
@@ -144,7 +151,6 @@ const Board = () => {
         //console.log(flippedActiveValue, "this shoudl conatinREVERS");
         //console.log(reversedSwapCard, "REVSERED NOW PUT BACK TO MIDDLE HAND");
         redsTurn ? cardSwap(redHand) : cardSwap(blueHand);
-        console.log(flippedActiveValue, "HERE IS POST SWAPCARD WE SHOULD HAVE FLIPPED VALUE HERE")
 
     }
     // lets take card used. put it to middle, send middle card to empty hand
@@ -159,11 +165,6 @@ const Board = () => {
         redsTurn ? setRedHand(newHand) : setBlueHand(newHand);
         //setMiddleHand(flippedActiveValue);
         setMiddleHand(flippedActiveValue);
-
-        console.log(flippedActiveValue, "FLIPPED ACTIVE VALUE")
-        console.timeLog('activeCard now in middleHand=', activeCard);
-        console.log(middleHand, "=after starting cardSwap moves")
-        //  breaking here     remember  siwthc the card m[put middle in here
 
     }
 
@@ -297,17 +298,6 @@ const Board = () => {
                                                 setCurrentTile([index, ii])
                                             }
                                         }}
-                                    /*
-                                    style={{
-                                        backgroundColor: canMoveTo(index, ii) ? 'white'
-                                            : (index === 0 && ii === 2)
-                                                ? 'red'
-                                                : (index === 5 && ii === 2)
-                                                    ? 'blue'
-                                                    : 'grey'
-                                    }}
-                                    */
-
                                     >
                                         {i === 'empty' ? '' : i}
                                     </div>
