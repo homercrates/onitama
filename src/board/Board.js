@@ -88,8 +88,7 @@ const Board = () => {
         let placePiece = hold[toA][toB]
 
         // make sure any move is illegal throw err
-        // no good canMoveTo ? console.log('yes... can move to') : console.log('no cant move to')
-        console.log(destination, '... destination set  is it valid?')
+        if (!canMoveTo(destination[0], destination[1])) throw new Error('Illegal move');
 
         //if (placePiece !== possibleMoves) throw new Error('Not a possible Move');
         // if piece you are moving doesn't exist error.
@@ -128,7 +127,6 @@ const Board = () => {
         setDestination([(currentTile[0] + activeCard[0][0]), (currentTile[1] + activeCard[0][1])])
         // click lets put a hand here to setActiiveCard then that will calc in movingTo give us destination
         // right now we are only auto chosing the first option in the activeCard
-        console.log(destination, "..destination, check against >> possible...", possibleMoves);
     }
 
     // use this but change the name later
@@ -181,7 +179,6 @@ const Board = () => {
     }
 
     const canMoveTo = (index, ii) => {
-        let hold = [...board];
         let found = false
         possibleMoves.forEach(i => {
             if (i[0] === index && i[1] === ii) { found = true }
