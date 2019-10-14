@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+import blueStudent from '../resouce/img/blueStudent.png';
+import redStudent from '../resouce/img/redStudent.png';
+import blueMaster from '../resouce/img/blueMaster.png';
+import redMaster from '../resouce/img/redMaster.png';
 
 const Board = () => {
     // board state
@@ -260,12 +264,12 @@ const Board = () => {
         <div>
             {/* RedHand */}
             <div className="redHandContainer" >
-                <div className={handShow.red}
+                <div className={(redsTurn && activeCard === redHand[0]) ? `${handShow.red}-active` : handShow.red}
                     onClick={() => setActiveCard(redHand[0])}
                 >
                     {redHand[0]}
                 </div>
-                <div className={handShow.red}
+                <div className={(redsTurn && activeCard === redHand[1]) ? `${handShow.red}-active` : handShow.red}
                     onClick={() => setActiveCard(redHand[1])}
                 >
                     {redHand[1]}
@@ -303,7 +307,13 @@ const Board = () => {
                                             }
                                         }}
                                     >
-                                        {i === 'empty' ? '' : i}
+                                        {i === 'empty' ? '' :
+                                            i === 'RS' ? <img src={redStudent} /> :
+                                                i === 'RM' ? <img src={redMaster} /> :
+                                                    i === 'BS' ? <img src={blueStudent} /> :
+                                                        i === 'BM' ? <img src={blueMaster} /> :
+                                                            ''
+                                        }
                                     </div>
                                 ))}
                             </React.Fragment>
@@ -336,12 +346,12 @@ const Board = () => {
             </div>
             {/* Blue Hand */}
             <div className="blueHandContainer">
-                <div className={handShow.blue}
+                <div className={(!redsTurn && activeCard === blueHand[0]) ? `${handShow.blue}-active` : handShow.blue}
                     onClick={() => setActiveCard(blueHand[0])}
                 >
                     {blueHand[0]}
                 </div>
-                <div className={handShow.blue}
+                <div className={(!redsTurn && activeCard === blueHand[1]) ? `${handShow.blue}-active` : handShow.blue}
                     onClick={() => setActiveCard(blueHand[1])}
                 >
                     {blueHand[1]}

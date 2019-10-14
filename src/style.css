@@ -7,6 +7,10 @@
     margin: .5vh;
     border: 0.2vh solid #444;
 }
+.redHandCard-active {
+    margin: .5vh;
+    border: 0.2vh solid red;
+}
 .blueHandContainer {
     display: flex;
     margin: 1vh;
@@ -14,6 +18,10 @@
 .blueHandCard {
     margin: .5vh;
     border: 0.2vh solid #444;
+}
+.blueHandCard-active {
+    margin: .5vh;
+    border: 0.2vh solid red;
 }
 .middleHandContainer {
     display: flex;
