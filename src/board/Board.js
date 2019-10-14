@@ -307,13 +307,7 @@ const Board = () => {
                                             }
                                         }}
                                     >
-                                        {i === 'empty' ? '' :
-                                            i === 'RS' ? <img src={redStudent} /> :
-                                                i === 'RM' ? <img src={redMaster} /> :
-                                                    i === 'BS' ? <img src={blueStudent} /> :
-                                                        i === 'BM' ? <img src={blueMaster} /> :
-                                                            ''
-                                        }
+                                        {i === 'empty' ? '' : i}
                                     </div>
                                 ))}
                             </React.Fragment>
