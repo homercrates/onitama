@@ -226,16 +226,19 @@ const Board = () => {
     const winConCheck = () => {
         const checkRedThrone = document.getElementById('02')
         if (checkRedThrone.innerHTML === 'BM') {
-            alert('Blue WIN, Way of Water');
+            someoneWon('Blue', 'Water');
         }
         const checkBlueThrone = document.getElementById('52')
         if (checkBlueThrone.innerHTML === 'RM') {
-            alert('Red WINs, Way of Water');
+            someoneWon('Red', 'Water');
         }
-        if (blueWins) alert("BLUE WINS, Way of Stone");
-        if (redWins) alert("RED WINS, Way of Stone");
+        if (blueWins) someoneWon('Blue', 'Stone');
+        if (redWins) someoneWon('Red', 'Stone');
     }
-
+    const someoneWon = (who, how) => {
+        setMessage(`${who}, won by way of ${how}`)
+        console.log(`${who}, won by way of ${how}`);
+    }
     // one time load to set middleHand
     // should expand dealtStartingHand to deal red and blue too
     useEffect(() => { dealStartingHand(); }, [])
