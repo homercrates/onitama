@@ -1,128 +1,127 @@
-
 .redHandContainer {
-    display: flex;
-    margin: 1vh;
+  display: flex;
+  margin: 1vh;
 }
 .redHandCard {
-    margin: .5vh;
-    border: 0.2vh solid #444;
+  margin: 0.5vh;
+  border: 0.2vh solid #444;
 }
 .redHandCard-active {
-    margin: .5vh;
-    border: 0.2vh solid red;
+  margin: 0.5vh;
+  border: 0.2vh solid red;
 }
 .blueHandContainer {
-    display: flex;
-    margin: 1vh;
+  display: flex;
+  margin: 1vh;
 }
 .blueHandCard {
-    margin: .5vh;
-    border: 0.2vh solid #444;
+  margin: 0.5vh;
+  border: 0.2vh solid #444;
 }
 .blueHandCard-active {
-    margin: .5vh;
-    border: 0.2vh solid red;
+  margin: 0.5vh;
+  border: 0.2vh solid red;
 }
 .middleHandContainer {
-    display: flex;
-    margin: 1vh;
+  display: flex;
+  margin: 1vh;
 }
 .middleHandCard {
-    margin: .5vh;
-    border: 0.2vh solid #444;
+  margin: 0.5vh;
+  border: 0.2vh solid #444;
 }
 .boardBorder {
-    display: flex;
-    flex-direction: row;
-    flex-flow: wrap;
-    width: 50vh;
-    background-color: beige;
-    border: 0.2vh solid #444;
-    max-width: 50vh;   
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  width: 50vh;
+  background-color: beige;
+  border: 0.2vh solid #444;
+  max-width: 50vh;
 }
 
 .boardContainer {
-    display: flex;
+  display: flex;
 }
 
 .directions {
-    border: 0.1vh solid #444;   
+  border: 0.1vh solid #444;
 }
 
-.orderButtonsContainer{
-    display: flex;
-    flex-direction: column;
+.orderButtonsContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .disabledButton {
-    pointer-events: none;
-    opacity: 0.8;
+  pointer-events: none;
+  opacity: 0.8;
 }
 
 .disabledInnerPiece {
-    pointer-events: none;
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 9vh;
-    width: 9vh;
-    background-color: grey;
-    border: 0.1vh solid #444;
+  pointer-events: none;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 9vh;
+  width: 9vh;
+  background-color: grey;
+  border: 0.1vh solid #444;
 }
 
 .innerPiece {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 9vh;
-    width: 9vh;
-    border: 0.1vh solid #444;
-    color: #222;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 7vh;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 9vh;
+  width: 9vh;
+  border: 0.1vh solid #444;
+  color: #222;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 7vh;
 
-    background-color: rgba(157, 160, 168, 0.705)
+  background-color: rgba(157, 160, 168, 0.705);
 }
 .innerPiece-possible {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 9vh;
-    width: 9vh;
-    border: 0.1vh solid #444;
-    color: #222;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 7vh;
-    background-color: rgba(255, 255, 255, 0.322);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 9vh;
+  width: 9vh;
+  border: 0.1vh solid #444;
+  color: #222;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 7vh;
+  background-color: rgba(255, 255, 255, 0.322);
 }
 .innerPiece-redThrone {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 9vh;
-    width: 9vh;
-    border: 0.1vh solid #444;
-    color: #222;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 7vh;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 9vh;
+  width: 9vh;
+  border: 0.1vh solid #444;
+  color: #222;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 7vh;
 
-    background-color: rgba(255, 0, 0, 0.301)
+  background-color: rgba(255, 0, 0, 0.301);
 }
 .innerPiece-blueThrone {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 9vh;
-    width: 9vh;
-    border: 0.1vh solid #444;
-    color: #222;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 7vh;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 9vh;
+  width: 9vh;
+  border: 0.1vh solid #444;
+  color: #222;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 7vh;
 
-    background-color: rgba(0, 68, 255, 0.308)
+  background-color: rgba(0, 68, 255, 0.308);
 }
